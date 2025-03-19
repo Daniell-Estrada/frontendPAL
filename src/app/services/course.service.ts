@@ -6,7 +6,6 @@ import axios from "axios";
 class CourseService {
   private baseUrl: string;
   constructor() {
-    console.log(environment.apiBaseUrl);
     this.baseUrl = `${environment.apiBaseUrl}/courses`;
   }
 
