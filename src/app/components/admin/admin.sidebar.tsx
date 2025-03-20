@@ -16,7 +16,7 @@ const navigationItems = [
 ];
 
 const AdminSidebar = () => {
-  const location = useLocation();
+  const location = useLocation(); // para saber en qué página está el usuario
 
   return (
     <Sidebar collapsible="icon">
