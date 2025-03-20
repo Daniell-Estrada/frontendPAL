@@ -6,3 +6,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+// Este es el 'home'
