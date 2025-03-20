@@ -4,6 +4,8 @@ import AdminSidebar from "app/components/admin/admin.sidebar";
 import { Separator } from "root/components/ui/separator";
 import AdminHeader from "app/components/admin/admin.header";
 
+import { Toaster } from "root/components/ui/sonner";
+
 export default function AdminPage() {
   return (
     <SidebarProvider>
@@ -15,6 +17,7 @@ export default function AdminPage() {
           <Outlet />
         </div>
       </SidebarInset>
+      <Toaster />
     </SidebarProvider>
   );
 }

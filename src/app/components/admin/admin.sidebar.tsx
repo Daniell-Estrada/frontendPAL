@@ -7,7 +7,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarRail,
   SidebarTrigger,
 } from "root/components/ui/sidebar";
 
@@ -24,8 +23,8 @@ const AdminSidebar = () => {
       <SidebarHeader className="border-b justify-center  h-16">
         <SidebarTrigger />
       </SidebarHeader>
-      <SidebarContent>
-        <SidebarMenu className="ml-2 space-y-2">
+      <SidebarContent className="px-2">
+        <SidebarMenu>
           {navigationItems.map(({ name, href, icon: Icon }) => (
             <SidebarMenuItem key={name}>
               <SidebarMenuButton
@@ -42,7 +41,6 @@ const AdminSidebar = () => {
           ))}
         </SidebarMenu>
       </SidebarContent>
-      <SidebarRail />
     </Sidebar>
   );
 };
