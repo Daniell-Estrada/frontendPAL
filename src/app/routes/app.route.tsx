@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CourseRoutes from "./course.route";
 // import App from "@/App";
 import AdminPage from "../pages/admin/admin";
+import ContentRoutes from "./content.route";
 
 const AppRoutes = () => {
   return (
@@ -11,6 +12,7 @@ const AppRoutes = () => {
         <Route index element={<AdminPage />} />
         <Route path="admin" element={<AdminPage />}>
           <Route path="course/*" element={<CourseRoutes />} />
+          <Route path="content/*" element={<ContentRoutes />} />
           <Route path= "category/*" element= {<h1>Page not found of category</h1>}/>
         </Route>
         <Route path="*" element={<h1>Page not found</h1>} />
