@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import CourseRoutes from "./course.route";
+
 // import App from "@/App";
 import AdminPage from "app/pages/admin/admin";
+import CourseRoutes from "./course.route";
+import ContentRoutes from "./content.route";
 
 const AppRoutes = () => {
   return (
@@ -11,10 +13,7 @@ const AppRoutes = () => {
         <Route index element={<AdminPage />} />
         <Route path="admin" element={<AdminPage />}>
           <Route path="course/*" element={<CourseRoutes />} />
-          <Route
-            path="category/*"
-            element={<h1>Page not found of category</h1>}
-          />
+          <Route path="content/*" element={<ContentRoutes />} />
         </Route>
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
@@ -30,4 +29,3 @@ export default AppRoutes;
  * Dentro de admin, si el usuario va a /admin/course, se usan las rutas de CourseRoutes.
  * Cualquier otra ruta que no esté definida, mostrará Page not found
  * */
-

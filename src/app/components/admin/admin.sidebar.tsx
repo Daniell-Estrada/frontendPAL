@@ -1,4 +1,4 @@
-import { Home, BookA } from "lucide-react";
+import { Home, BookA, FileText } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Sidebar,
@@ -13,6 +13,7 @@ import {
 const navigationItems = [
   { name: "Home", href: "/admin", icon: Home },
   { name: "Course", href: "/admin/course/list", icon: BookA },
+  { name: "Content", href: "/admin/content/list", icon: FileText },
 ];
 
 const AdminSidebar = () => {
