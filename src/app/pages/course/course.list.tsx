@@ -25,7 +25,6 @@ const CourseList = () => {
     courseService
       .create(courseData as Course)
       .then((data) => {
-        console.log(data);
         setCourses([...courses, data]);
         toast.success("Course created successfully");
       })

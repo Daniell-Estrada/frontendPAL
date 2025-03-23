@@ -22,6 +22,15 @@ interface CourseDialogProps {
   onConfirm: (courseData?: Course) => void;
 }
 
+const defaultCourse: Course = {
+  id: 0,
+  title: "",
+  description: "",
+  instructorId: 0,
+  categoryId: 0,
+  price: 0,
+};
+
 export function CourseDialog({
   mode,
   course,
@@ -29,20 +38,12 @@ export function CourseDialog({
   onConfirm,
 }: CourseDialogProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [courseData, setCourseData] = useState<Course>(
-    course || {
-      id: 0,
-      title: "",
-      description: "",
-      instructorId: 0,
-      categoryId: 0,
-      price: 0,
-    },
-  );
+  const [courseData, setCourseData] = useState<Course>(course || defaultCourse);
 
   const handleConfirm = () => {
     onConfirm(courseData);
     setIsDialogOpen(false);
+    setCourseData(course || defaultCourse);
   };
 
   const renderDialogContent = () => {

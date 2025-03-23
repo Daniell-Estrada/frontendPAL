@@ -20,8 +20,16 @@ class CourseService {
   }
 
   async create(course: Course): Promise<Course> {
-    console.log(course);
-    const response = await axios.post<Course>(`${this.baseUrl}/create`, course);
+    const response = await axios.post<Course>(
+      `${this.baseUrl}/create`,
+      course,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      },
+    );
+
     return response.data;
   }
 
