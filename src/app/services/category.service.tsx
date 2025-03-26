@@ -5,6 +5,7 @@ import axios from "axios";
 
 class CategoryService {
   private baseUrl: string;
+
   constructor() {
     this.baseUrl = `${environment.apiBaseUrl}/categories`;
   }
@@ -20,7 +21,7 @@ class CategoryService {
   }
 
   async create(category: Category): Promise<Category> {
-    console.log(category);
+    console.log(category);  
     const response = await axios.post<Category>(
       `${this.baseUrl}/create`,
       category,
