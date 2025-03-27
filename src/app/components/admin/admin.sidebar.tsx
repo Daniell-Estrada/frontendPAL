@@ -22,7 +22,7 @@ const AdminSidebar = () => {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader className="border-b justify-center  h-16">
+      <SidebarHeader className="border-b justify-center h-16">
         <SidebarTrigger />
       </SidebarHeader>
       <SidebarContent className="px-2">
@@ -34,9 +34,9 @@ const AdminSidebar = () => {
                 isActive={location.pathname === href}
                 tooltip={name}
               >
-                <Link to={href} className="flex gap-2 items-center">
-                  <Icon className="h-5 w-5" />
-                  <span>{name}</span>
+                <Link to={href} className="flex gap-4 items-center hover:bg-gray-200 p-3 rounded">
+                  <Icon className="h-10 w-10 text-purple-600" /> {/* Tamaño grande y color morado */}
+                  <span className="text-lg font-semibold text-gray-800">{name}</span> {/* Texto estilizado */}
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
