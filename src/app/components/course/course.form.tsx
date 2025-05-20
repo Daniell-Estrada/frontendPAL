@@ -127,6 +127,45 @@ export function CourseForm({ courseData, setCourseData }: CourseFormProps) {
           </SelectContent>
         </Select>
       </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="difficulty" className="text-right">
+          Difficulty
+        </Label>
+        <Select
+          defaultValue={courseData.difficulty}
+          onValueChange={(value) =>
+            setCourseData({ ...courseData, difficulty: value })
+          }
+        >
+          <SelectTrigger className="col-span-3 w-full">
+            <SelectValue placeholder="Select Difficulty" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="easy">Easy</SelectItem>
+            <SelectItem value="medium">Medium</SelectItem>
+            <SelectItem value="hard">Hard</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="free" className="text-right">
+          Free
+        </Label>
+        <Select
+          defaultValue={courseData.free ? "yes" : "no"}
+          onValueChange={(value) =>
+            setCourseData({ ...courseData, free: value === "yes" })
+          }
+        >
+          <SelectTrigger className="col-span-3 w-full">
+            <SelectValue placeholder="Is Free?" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="yes">Sí</SelectItem>
+            <SelectItem value="no">No</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 }

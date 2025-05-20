@@ -1,4 +1,5 @@
 import { Bell, Search, Settings, User } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Avatar, AvatarFallback, AvatarImage } from "root/components/ui/avatar";
@@ -15,6 +16,13 @@ import { Input } from "root/components/ui/input";
 
 export default function AdminHeader() {
   const navigate = useNavigate();
+  const [searchText, setSearchText] = useState("");
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && searchText.trim() !== "") {
+      navigate(`/admin/course/list?keyword=${encodeURIComponent(searchText.trim())}`);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-background px-4">
@@ -26,13 +34,17 @@ export default function AdminHeader() {
 
       <div className="flex flex-1 items-center justify-end md:justify-center">
         <div className="relative w-full max-w-md">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input
-            type="search"
-            placeholder="Search..."
-            className="w-full rounded-full bg-muted pl-8 md:max-w-md"
-          />
-        </div>
+      <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+        <Input
+          type="search"
+          placeholder="Search..."
+          className="w-full rounded-full bg-muted pl-8 md:max-w-md"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+
+      </div>
       </div>
 
       <div className="flex items-center gap-2">

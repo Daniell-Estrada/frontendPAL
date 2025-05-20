@@ -51,6 +51,9 @@ export default function CourseManage({
       instructorId: 0,
       categoryId: 0,
       price: 0,
+      difficulty: "",
+      free: false,
+      createdAt: "",
     },
   );
 
@@ -175,6 +178,45 @@ export default function CourseManage({
                       {category.name}
                     </SelectItem>
                   ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="difficulty" className="text-right">
+                Difficulty
+              </Label>
+              <Select
+                defaultValue={courseData.difficulty || ""}
+                onValueChange={(value) =>
+                  setCourseData({ ...courseData, difficulty: value })
+                }
+              >
+                <SelectTrigger className="col-span-3 w-full">
+                  <SelectValue placeholder="Select Difficulty" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="easy">Easy</SelectItem>
+                  <SelectItem value="medium">Medium</SelectItem>
+                  <SelectItem value="hard">Hard</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="free" className="text-right">
+                Free
+              </Label>
+              <Select
+                defaultValue={String(courseData.free)}
+                onValueChange={(value) =>
+                  setCourseData({ ...courseData, free: value === "true" })
+                }
+              >
+                <SelectTrigger className="col-span-3 w-full">
+                  <SelectValue placeholder="Select Free" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="true">Yes</SelectItem>
+                  <SelectItem value="false">No</SelectItem>
                 </SelectContent>
               </Select>
             </div>
