@@ -92,10 +92,10 @@ const CourseList = () => {
           {courses.map((course) => (
             <TableRow key={course.id}>
               <TableCell>{course.id}</TableCell>
-              <TableCell className="max-w-[150px] truncate">
+              <TableCell className="w-44 max-w-[14rem] truncate">
                 {course.title}
               </TableCell>
-              <TableCell className="max-w-[250px] truncate">
+              <TableCell className="w-56 max-w-[14rem] truncate">
                 {course.description}
               </TableCell>
               <TableCell>{course.instructorId}</TableCell>
