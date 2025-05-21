@@ -29,6 +29,9 @@ const defaultCourse: Course = {
   instructorId: 0,
   categoryId: 0,
   price: 0,
+  difficulty: "",
+  free: false,
+  createdAt: "",
 };
 
 export function CourseDialog({

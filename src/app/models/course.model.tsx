@@ -3,7 +3,10 @@ export interface Course {
   title: string;
   description: string;
   price: number;
+  difficulty: string;
+  free: boolean;
   instructorId: number;
   categoryId: number;
+  createdAt: string;
 }
 
