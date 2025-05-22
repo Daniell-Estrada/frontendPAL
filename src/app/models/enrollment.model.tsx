@@ -1,19 +1,19 @@
 export interface Enrollment {
-  id: number
-  studentId: number
-  courseId: number
-  enrollmentDate: string
-  status: "completed" | "in_progress" | "not_started"
-  progress: number
+  id: number;
+  studentId: number;
+  courseId: number;
+  enrollmentDate: string;
+  status: "completado" | "en_progreso" | "no_iniciado";
+  progress: number;
 }
 
 export interface EnrolledCourse {
-  id: number
-  title: string
-  description: string
-  enrollmentDate: string
-  status: "completed" | "in_progress" | "not_started"
-  progress: number
-  instructorName: string
-  categoryName: string
+  id: number;
+  title: string;
+  description: string;
+  enrollmentDate: string;
+  status: "completado" | "en_progreso" | "no_iniciado";
+  progress: number;
+  instructorName: string;
+  categoryName: string;
 }

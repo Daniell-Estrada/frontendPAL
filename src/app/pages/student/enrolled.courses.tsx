@@ -11,8 +11,10 @@ import {
 import type { EnrolledCourse } from "app/models/enrollment.model";
 import enrollmentService from "app/services/enrollment.service";
 import { Search } from "lucide-react";
+import { useAuth } from "security/context/auth.context";
 
 export default function EnrolledCourses() {
+  const { user } = useAuth();
   const [enrolledCourses, setEnrolledCourses] = useState<EnrolledCourse[]>([]);
   const [filteredCourses, setFilteredCourses] = useState<EnrolledCourse[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,7 +25,7 @@ export default function EnrolledCourses() {
     const fetchEnrolledCourses = async () => {
       setIsLoading(true);
       try {
-        const data = await enrollmentService.getMyEnrolledCourses();
+        const data = await enrollmentService.getMyEnrolledCourses(user!.id);
         setEnrolledCourses(data);
         setFilteredCourses(data);
       } catch (error) {

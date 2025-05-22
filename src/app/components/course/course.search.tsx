@@ -19,8 +19,10 @@ import { CourseCard } from "./course.card";
 import enrollmentService from "app/services/enrollment.service";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "security/context/auth.context";
 
 export function CourseSearch() {
+  const { user } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
   const [difficulty, setDifficulty] = useState<string | null>("all");
   const [free, setFree] = useState<string | null>("all");
@@ -44,15 +46,21 @@ export function CourseSearch() {
 
     const fetchEnrolledCourses = async () => {
       try {
-        const enrolledCourses = await enrollmentService.getMyEnrolledCourses();
-        setEnrolledCourseIds(enrolledCourses.map((course) => course.id));
+        const enrolledCourses = await enrollmentService.getMyEnrolledCourses(
+          user!.id,
+        );
+        const courseIds = enrolledCourses.map((course) => course.id);
+        setEnrolledCourseIds(courseIds);
       } catch (error) {
         console.error("Error fetching enrolled courses:", error);
       }
     };
 
     fetchCategories();
-    fetchEnrolledCourses();
+
+    if (user) {
+      fetchEnrolledCourses();
+    }
   }, []);
 
   useEffect(() => {
@@ -85,7 +93,7 @@ export function CourseSearch() {
 
   const handleEnroll = async (courseId: number) => {
     try {
-      await enrollmentService.enrollInCourse(courseId);
+      await enrollmentService.enrollInCourse(user!.id, courseId);
       setEnrolledCourseIds([...enrolledCourseIds, courseId]);
       toast.success("Successfully enrolled in the course!");
       navigate(`/student/courses/${courseId}`);

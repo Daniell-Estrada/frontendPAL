@@ -67,12 +67,12 @@ export function CourseCard({
           isEnrolled ? (
             <Button asChild className="w-full">
               <Link to={`/student/courses/${course.id}`}>
-                Continue Learning
+                Continuar Aprendiendo
               </Link>
             </Button>
           ) : (
             <Button onClick={handleEnroll} className="w-full">
-              Enroll Now
+              Matricularse
             </Button>
           )
         ) : (

@@ -32,9 +32,9 @@ export function EnrolledCourseCard({ course }: EnrolledCourseCardProps) {
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "completed":
+      case "completedo":
         return "Completed";
-      case "in_progress":
+      case "en_progreso":
         return "In Progress";
       default:
         return "Not Started";
@@ -83,12 +83,12 @@ export function EnrolledCourseCard({ course }: EnrolledCourseCardProps) {
       </CardContent>
       <CardFooter className="flex gap-2">
         <Button asChild className="flex-1">
-          <Link to={`/student/courses/${course.id}`}>Continue</Link>
+          <Link to={`/student/courses/${course.id}`}>Continuar Curso</Link>
         </Button>
-        {course.status === "completed" && (
+        {course.status === "completado" && (
           <Button asChild variant="outline" className="flex-1">
             <Link to={`/student/certificates/course/${course.id}`}>
-              View Certificate
+              Ver Certificado
             </Link>
           </Button>
         )}

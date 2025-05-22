@@ -7,8 +7,10 @@ import { Link } from "react-router-dom";
 import { Search, BookOpen, Award } from "lucide-react";
 import type { Certificate } from "app/models/certificate.model";
 import certificateService from "app/services/certificate.service";
+import { useAuth } from "../../security/context/auth.context";
 
 export default function StudentDashboard() {
+  const { user } = useAuth();
   const [enrolledCourses, setEnrolledCourses] = useState<EnrolledCourse[]>([]);
   const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -17,13 +19,13 @@ export default function StudentDashboard() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const [coursesData, certificatesData] = await Promise.all([
-          enrollmentService.getMyEnrolledCourses(),
-          certificateService.getMyCertificates(),
+        const [coursesData] = await Promise.all([
+          enrollmentService.getMyEnrolledCourses(user!.id),
+          // certificateService.getMyCertificates(user!.id),
         ]);
 
         setEnrolledCourses(coursesData);
-        setCertificates(certificatesData);
+        //setCertificates(certificatesData);
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
       } finally {
@@ -36,7 +38,7 @@ export default function StudentDashboard() {
 
   // Get in-progress courses
   const inProgressCourses = enrolledCourses.filter(
-    (course) => course.status === "in_progress",
+    (course) => course.status === "en_progreso",
   );
 
   // Get recently enrolled courses (last 3)
@@ -51,7 +53,7 @@ export default function StudentDashboard() {
   return (
     <div className="container mx-auto py-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Student Dashboard</h1>
+        <h1 className="text-3xl font-bold">Dashboard de Estudiante</h1>
         <div className="flex gap-4">
           <Button asChild variant="outline">
             <Link to="/courses/search" className="flex items-center gap-2">
@@ -62,7 +64,7 @@ export default function StudentDashboard() {
           <Button asChild>
             <Link to="/student/courses" className="flex items-center gap-2">
               <BookOpen className="h-4 w-4" />
-              My Courses
+              Mis Cursos
             </Link>
           </Button>
         </div>
@@ -81,7 +83,9 @@ export default function StudentDashboard() {
         <>
           {inProgressCourses.length > 0 && (
             <section className="mb-10">
-              <h2 className="text-2xl font-semibold mb-4">Continue Learning</h2>
+              <h2 className="text-2xl font-semibold mb-4">
+                Continuar Aprendiendo
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {inProgressCourses.slice(0, 3).map((course) => (
                   <EnrolledCourseCard key={course.id} course={course} />
