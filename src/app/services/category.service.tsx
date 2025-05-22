@@ -29,7 +29,7 @@ class CategoryService {
     return response.data;
   }
 
-  async update(id: Number, category: Category): Promise<Category> {
+  async update(id: number, category: Category): Promise<Category> {
     const response = await axios.put<Category>(
       `${this.baseUrl}/update/${id}`,
       category,

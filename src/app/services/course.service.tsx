@@ -40,7 +40,7 @@ class CourseService {
     return response.data;
   }
 
-  async update(id: Number, course: Course): Promise<Course> {
+  async update(id: number, course: Course): Promise<Course> {
     const response = await axios.put<Course>(
       `${this.baseUrl}/update/${id}`,
       course,
@@ -57,6 +57,7 @@ class CourseService {
     difficulty?: string | null;
     free?: string | null; // "true" o "false"
     sortBy?: string | null; // <--- Agregamos esto
+    categoryId?: number | null;
   }): Promise<Course[]> {
     const queryParams = new URLSearchParams();
 
@@ -66,6 +67,9 @@ class CourseService {
       queryParams.append("free", String(params.free));
     }
     if (params.sortBy) queryParams.append("sortBy", params.sortBy);
+    if (params.categoryId !== null && params.categoryId !== undefined) {
+      queryParams.append("categoryId", String(params.categoryId)); // <-- Agrega esto
+    }
 
     const response = await axios.get<Course[]>(
       `${this.baseUrl}/search?${queryParams.toString()}`,
