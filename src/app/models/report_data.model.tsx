@@ -1,7 +1,7 @@
-import { Student } from "./student.model";
+import { StudentReport } from "./student.report.model";
 
 export interface ReportData {
   courseTitle: string;
   generatedDate: string;
-  students: Student[];
+  students: StudentReport[];
 }

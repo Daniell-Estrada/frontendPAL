@@ -11,12 +11,14 @@ import { Link } from "react-router-dom";
 import { BookOpen, Users, Award, Clock } from "lucide-react";
 import { useAuth } from "security/context/auth.context";
 import courseService from "app/services/course.service";
+import instructorService from "app/services/instructor.service";
 import type { Course } from "app/models/course.model";
+import { InstructorReport } from "../../models/instructor.report.model";
 
 export default function InstructorDashboard() {
   const { user } = useAuth();
   const [courses, setCourses] = useState<Course[]>([]);
-  const [stats, setStats] = useState({
+  const [stats, setStats] = useState<InstructorReport>({
     totalCourses: 0,
     totalStudents: 0,
     completionRate: 0,
@@ -30,13 +32,7 @@ export default function InstructorDashboard() {
       try {
         // Obtener cursos del instructor
         await courseService.getByInstructorId(user!.id).then(setCourses);
-
-        setStats({
-          totalCourses: courses.length,
-          totalStudents: Math.floor(Math.random() * 100) + 20,
-          completionRate: Math.floor(Math.random() * 100),
-          averageScore: Math.floor(Math.random() * 40) + 60,
-        });
+        await instructorService.reportByInstructorId(user!.id).then(setStats);
       } catch (error) {
         console.error("Error fetching instructor data:", error);
       } finally {
@@ -111,7 +107,7 @@ export default function InstructorDashboard() {
             <div className="flex items-center gap-2">
               <Award className="h-5 w-5 text-muted-foreground" />
               <span className="text-2xl font-bold">
-                {stats.completionRate}%
+                {Math.round(stats.completionRate * 100)}%
               </span>
             </div>
           </CardContent>

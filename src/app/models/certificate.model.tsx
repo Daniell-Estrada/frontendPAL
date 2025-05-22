@@ -1,9 +1,9 @@
 export interface Certificate {
-  id: number
-  studentId: number
-  courseId: number
-  studentName: string
-  courseName: string
-  issueDate: string
-  certificateUrl: string
+  id: number;
+  studentId: number;
+  courseId: number;
+  username: string;
+  courseName: string;
+  issueDate: string;
+  certificateUrl: string;
 }

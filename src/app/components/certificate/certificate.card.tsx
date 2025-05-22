@@ -43,7 +43,7 @@ export function CertificateCard({ certificate }: CertificateCardProps) {
       <CardContent className="space-y-2">
         <div className="text-sm">
           <span className="font-medium">Issued to: </span>
-          {certificate.studentName}
+          {certificate.username}
         </div>
         <div className="text-sm">
           <span className="font-medium">Issue Date: </span>

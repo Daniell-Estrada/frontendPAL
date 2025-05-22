@@ -199,7 +199,7 @@ export const PDFReport = ({ data }: { data: ReportData }) => (
             <View key={index}>
               <View style={styles.tableRow}>
                 <View style={[styles.tableCell, styles.col1]}>
-                  <Text>{student.studentName}</Text>
+                  <Text>{student.username}</Text>
                 </View>
                 <View style={[styles.tableCell, styles.col2]}>
                   <Text>{(student.courseProgress * 100).toFixed(0)}%</Text>

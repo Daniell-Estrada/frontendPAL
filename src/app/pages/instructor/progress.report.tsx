@@ -76,7 +76,7 @@ export default function ProgressReport() {
       "Forum Messages",
     ];
     const rows = reportData.students.map((student) => [
-      student.studentName,
+      student.username,
       (student.courseProgress * 100).toFixed(0) + "%",
       student.averageScore.toFixed(1),
       student.forumMessages,
@@ -245,7 +245,7 @@ export default function ProgressReport() {
               {reportData.students.map((student, index) => (
                 <TableRow key={index}>
                   <TableCell className="font-medium">
-                    {student.studentName}
+                    {student.username}
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
