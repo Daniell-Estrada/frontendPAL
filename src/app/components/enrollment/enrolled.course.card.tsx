@@ -82,9 +82,11 @@ export function EnrolledCourseCard({ course }: EnrolledCourseCardProps) {
         </div>
       </CardContent>
       <CardFooter className="flex gap-2">
-        <Button asChild className="flex-1">
-          <Link to={`/student/courses/${course.id}`}>Continuar Curso</Link>
-        </Button>
+        {course.status !== "completado" && (
+          <Button asChild className="flex-1">
+            <Link to={`/student/courses/${course.id}`}>Continuar Curso</Link>
+          </Button>
+        )}
         {course.status === "completado" && (
           <Button asChild variant="outline" className="flex-1">
             <Link to={`/student/certificates/${course.id}`}>
