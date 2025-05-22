@@ -25,7 +25,7 @@ export default function HomePage() {
           </Button>
         </Link>
       );
-    } else if (selectRole(user.roles, "STUDENT")) {
+    } else if (selectRole(user.roles, "ESTUDIANTE")) {
       return (
         <Link to="/student/dashboard">
           <Button className="px-4 py-2 bg-green-500 text-white rounded">

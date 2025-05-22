@@ -13,9 +13,7 @@ export default function InstructorPage() {
       <SidebarInset>
         <InstructorHeader />
         <Separator />
-        <div className="p-4">
-          <Outlet />
-        </div>
+        <div className="p-4"></div>
       </SidebarInset>
       <Toaster />
     </SidebarProvider>

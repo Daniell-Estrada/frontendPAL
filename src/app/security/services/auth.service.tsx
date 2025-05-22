@@ -75,7 +75,7 @@ class AuthService {
   }
 
   isStudent(): boolean {
-    return this.hasRole("STUDENT");
+    return this.hasRole("ESTUDIANTE");
   }
 
   // Configurar el token en el header para todas las peticiones

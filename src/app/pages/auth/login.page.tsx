@@ -18,7 +18,7 @@ export default function LoginPage() {
         navigate("/admin");
       } else if (selectRole(user.roles, "INSTRUCTOR")) {
         navigate("/instructor/dashboard");
-      } else if (selectRole(user.roles, "STUDENT")) {
+      } else if (selectRole(user.roles, "ESTUDIANTE")) {
         navigate("/student/dashboard");
       }
     }

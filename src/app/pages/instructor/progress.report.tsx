@@ -132,7 +132,7 @@ export default function ProgressReport() {
       <div className="flex justify-between items-center mb-6">
         <div>
           <h1 className="text-3xl font-bold">
-            {reportData.courseTitle} - Progress Report
+            {reportData.courseTitle} - Reporte de Progreso
           </h1>
           <p className="text-muted-foreground">
             Generated on{" "}

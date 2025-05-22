@@ -70,7 +70,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         navigate("/admin");
       } else if (selectRole(response.user.roles, "INSTRUCTOR")) {
         navigate("/instructor/dashboard");
-      } else if (selectRole(response.user.roles, "STUDENT")) {
+      } else if (selectRole(response.user.roles, "ESTUDIANTE")) {
         navigate("/student/dashboard");
       } else {
         navigate("/");

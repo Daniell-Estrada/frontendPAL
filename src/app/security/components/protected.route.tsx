@@ -46,7 +46,7 @@ export function ProtectedRoute({
         return <Navigate to="/admin" replace />;
       } else if (selectRole(user.roles, "INSTRUCTOR")) {
         return <Navigate to="/instructor/dashboard" replace />;
-      } else if (selectRole(user.roles, "STUDENT")) {
+      } else if (selectRole(user.roles, "ESTUDIANTE")) {
         return <Navigate to="/student/dashboard" replace />;
       } else {
         return <Navigate to="/" replace />;

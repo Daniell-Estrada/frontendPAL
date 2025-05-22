@@ -29,16 +29,10 @@ export default function InstructorDashboard() {
       setIsLoading(true);
       try {
         // Obtener cursos del instructor
-        const coursesData = await courseService.getAll();
-        // Filtrar cursos por instructorId
-        const instructorCourses = coursesData.filter(
-          (course) => course.instructorId === user?.id,
-        );
-        setCourses(instructorCourses);
+        await courseService.getByInstructorId(user!.id).then(setCourses);
 
-        // Simular estadísticas (en un entorno real, estas vendrían del backend)
         setStats({
-          totalCourses: instructorCourses.length,
+          totalCourses: courses.length,
           totalStudents: Math.floor(Math.random() * 100) + 20,
           completionRate: Math.floor(Math.random() * 100),
           averageScore: Math.floor(Math.random() * 40) + 60,
@@ -164,7 +158,9 @@ export default function InstructorDashboard() {
                       </p>
                     </div>
                     <Button asChild variant="outline" size="sm">
-                      <Link to={`/instructor/courses/${course.id}`}>Ver</Link>
+                      <Link to={`/instructor/reports/course/${course.id}`}>
+                        Ver
+                      </Link>
                     </Button>
                   </div>
                 ))}
@@ -175,7 +171,7 @@ export default function InstructorDashboard() {
                   No tienes cursos creados aún
                 </p>
                 <Button asChild className="mt-4">
-                  <Link to="/instructor/courses/create">Crear Curso</Link>
+                  <Link to="/instructor/courses">Crear Curso</Link>
                 </Button>
               </div>
             )}

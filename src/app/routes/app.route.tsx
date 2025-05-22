@@ -44,7 +44,7 @@ const AppRoutes = () => {
           <Route
             path="student/*"
             element={
-              <ProtectedRoute allowedRoles={["STUDENT"]}>
+              <ProtectedRoute allowedRoles={["ESTUDIANTE"]}>
                 <StudentRoutes />
               </ProtectedRoute>
             }

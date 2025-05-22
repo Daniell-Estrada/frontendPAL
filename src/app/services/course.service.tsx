@@ -19,6 +19,13 @@ class CourseService {
     return response.data;
   }
 
+  async getByInstructorId(instructorId: number): Promise<Course[]> {
+    const response = await axios.get<Course[]>(
+      `${this.baseUrl}/by-instructor/${instructorId}`,
+    );
+    return response.data;
+  }
+
   async create(course: Course): Promise<Course> {
     const response = await axios.post<Course>(
       `${this.baseUrl}/create`,
@@ -45,27 +52,26 @@ class CourseService {
     await axios.delete(`${this.baseUrl}/delete/${id}`);
   }
 
-async search(params: {
-  keyword?: string | null;
-  difficulty?: string | null;
-  free?: string | null; // "true" o "false"
-  sortBy?: string | null; // <--- Agregamos esto
-}): Promise<Course[]> {
-  const queryParams = new URLSearchParams();
+  async search(params: {
+    keyword?: string | null;
+    difficulty?: string | null;
+    free?: string | null; // "true" o "false"
+    sortBy?: string | null; // <--- Agregamos esto
+  }): Promise<Course[]> {
+    const queryParams = new URLSearchParams();
 
-  if (params.keyword) queryParams.append("keyword", params.keyword);
-  if (params.difficulty) queryParams.append("difficulty", params.difficulty);
-  if (params.free !== null && params.free !== undefined) {
-    queryParams.append("free", String(params.free));
+    if (params.keyword) queryParams.append("keyword", params.keyword);
+    if (params.difficulty) queryParams.append("difficulty", params.difficulty);
+    if (params.free !== null && params.free !== undefined) {
+      queryParams.append("free", String(params.free));
+    }
+    if (params.sortBy) queryParams.append("sortBy", params.sortBy);
+
+    const response = await axios.get<Course[]>(
+      `${this.baseUrl}/search?${queryParams.toString()}`,
+    );
+    return response.data;
   }
-  if (params.sortBy) queryParams.append("sortBy", params.sortBy);
-
-  const response = await axios.get<Course[]>(
-    `${this.baseUrl}/search?${queryParams.toString()}`
-  );
-  return response.data;
-}
-
 }
 
 export default new CourseService();
