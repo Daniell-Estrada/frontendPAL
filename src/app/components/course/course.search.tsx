@@ -38,6 +38,7 @@ export function CourseSearch() {
     const fetchCategories = async () => {
       try {
         const data = await categoryService.getAll();
+        console.log("Categories:", data);
         setCategories(data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -72,9 +73,10 @@ export function CourseSearch() {
         if (free !== "all") filters.free = free;
         if (difficulty !== "all") filters.difficulty = difficulty;
         if (sortBy !== "default") filters.sortBy = sortBy;
-        if (category !== "all") filters.categoryId = category;
-
+        if (category !== "all") filters.categoryId = Number(category);
+        console.log("Filters:", filters);
         const data = await courseService.search(filters);
+        console.log("Courses:", data);
         setCourses(data);
       } catch (error) {
         console.error("Error fetching courses:", error);
