@@ -4,8 +4,10 @@ import { Input } from "root/components/ui/input";
 import type { Certificate } from "app/models/certificate.model";
 import certificateService from "app/services/certificate.service";
 import { Search } from "lucide-react";
+import { useAuth } from "../../security/context/auth.context";
 
 export default function Certificates() {
+  const { user } = useAuth();
   const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [filteredCertificates, setFilteredCertificates] = useState<
     Certificate[]
@@ -17,7 +19,7 @@ export default function Certificates() {
     const fetchCertificates = async () => {
       setIsLoading(true);
       try {
-        const data = await certificateService.getMyCertificates();
+        const data = await certificateService.getMyCertificates(user!.id);
         setCertificates(data);
         setFilteredCertificates(data);
       } catch (error) {

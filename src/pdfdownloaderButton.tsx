@@ -23,8 +23,6 @@ const PDFDownloadButton = ({
         filename,
       };
 
-      console.log("Datos del informe:", requestData);
-
       // Simular la generación de PDF (en un entorno real, esto sería una llamada a una API)
       await new Promise((resolve) => setTimeout(resolve, 1000));
 

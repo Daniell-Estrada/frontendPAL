@@ -10,25 +10,42 @@ import type { Certificate } from "app/models/certificate.model";
 import { Award, Download, Eye } from "lucide-react";
 import { format } from "date-fns";
 import certificateService from "app/services/certificate.service";
+import { useAuth } from "security/context/auth.context";
 
 interface CertificateCardProps {
   certificate: Certificate;
 }
 
 export function CertificateCard({ certificate }: CertificateCardProps) {
+  const { user } = useAuth();
   const handleDownload = async () => {
     try {
       const blob = await certificateService.downloadCertificate(certificate.id);
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `${certificate.courseName.replace(/\s+/g, "_")}_Certificate.pdf`;
+      a.download = `${certificate.courseTitle.replace(/\s+/g, "_")}_Certificate.pdf`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
     } catch (error) {
       console.error("Error downloading certificate:", error);
+    }
+  };
+
+  const handleSendEmail = async () => {
+    try {
+      const response = await certificateService.sendCertificateByEmail(
+        user!.email,
+        certificate.id,
+      );
+      if (response.status === 200) {
+      } else {
+        alert("Failed to send certificate. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error sending certificate by email:", error);
     }
   };
 
@@ -43,7 +60,7 @@ export function CertificateCard({ certificate }: CertificateCardProps) {
       <CardContent className="space-y-2">
         <div className="text-sm">
           <span className="font-medium">Issued to: </span>
-          {certificate.username}
+          {certificate.courseTitle}
         </div>
         <div className="text-sm">
           <span className="font-medium">Issue Date: </span>
@@ -62,10 +79,10 @@ export function CertificateCard({ certificate }: CertificateCardProps) {
         <Button
           variant="default"
           className="flex-1 flex items-center gap-2"
-          onClick={() => window.open(certificate.certificateUrl, "_blank")}
+          onClick={handleSendEmail}
         >
           <Eye className="h-4 w-4" />
-          View
+          Enviar por Email
         </Button>
       </CardFooter>
     </Card>

@@ -14,7 +14,7 @@ const StudentRoutes = () => {
       <Route path="courses/:courseId" element={<CourseDetail />} />
       <Route path="exams/take/:examId" element={<TakeExam />} />
       <Route path="exams/results/:examId" element={<ExamResults />} />
-      <Route path="certificates" element={<Certificates />} />
+      <Route path="certificates/:certificateId" element={<Certificates />} />
       <Route path="*" element={<Navigate to="/student/dashboard" />} />
     </Routes>
   );

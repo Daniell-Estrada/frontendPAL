@@ -19,13 +19,13 @@ export default function StudentDashboard() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const [coursesData] = await Promise.all([
+        const [coursesData, certificatesData] = await Promise.all([
           enrollmentService.getMyEnrolledCourses(user!.id),
-          // certificateService.getMyCertificates(user!.id),
+          certificateService.getMyCertificates(user!.id),
         ]);
 
         setEnrolledCourses(coursesData);
-        //setCertificates(certificatesData);
+        setCertificates(certificatesData);
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
       } finally {

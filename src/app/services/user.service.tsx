@@ -20,7 +20,6 @@ class UserService {
   }
 
   async create(user: User): Promise<User> {
-    console.log(user);
     const response = await axios.post<User>(`${this.baseUrl}/create`, user);
     return response.data;
   }

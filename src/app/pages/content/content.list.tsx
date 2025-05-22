@@ -21,24 +21,22 @@ const ContentList = () => {
     contentService.getAll().then((data) => setContents(data));
   }, []);
 
-  const uploadContent = (contentData?: Content | { file: File | null; courseId: number; type: string }) => {
-    console.log("Received contentData:", contentData);
-
+  const uploadContent = (
+    contentData?:
+      | Content
+      | { file: File | null; courseId: number; type: string },
+  ) => {
     if (!contentData || "id" in contentData) {
-        console.error("Invalid contentData:", contentData);
-        toast.error("Invalid content data for upload");
-        return;
+      console.error("Invalid contentData:", contentData);
+      toast.error("Invalid content data for upload");
+      return;
     }
 
     if (!contentData.file) {
-        console.error("File is missing:", contentData);
-        toast.error("File is required to upload content");
-        return;
+      console.error("File is missing:", contentData);
+      toast.error("File is required to upload content");
+      return;
     }
-
-    console.log("Uploading file:", contentData.file);
-    console.log("Course ID:", contentData.courseId);
-    console.log("Type:", contentData.type);
 
     contentService
       .upload(contentData.file, contentData.courseId, contentData.type)
@@ -49,7 +47,7 @@ const ContentList = () => {
       .catch(() => {
         toast.error("Failed to upload content");
       });
-};
+  };
 
   const updateContent = (data: Content | undefined) => {
     if (!data) {
@@ -97,7 +95,9 @@ const ContentList = () => {
         content={content}
         onConfirm={(contentData) => {
           if ("id" in (contentData || {})) {
-            isEdit ? updateContent(contentData as Content) : deleteContent(contentData as Content);
+            isEdit
+              ? updateContent(contentData as Content)
+              : deleteContent(contentData as Content);
           }
         }}
         action={
@@ -145,9 +145,13 @@ const ContentList = () => {
               <TableCell>{content.type}</TableCell>
               <TableCell>{content.courseId}</TableCell>
               <TableCell>
-              <a href={`http://localhost:8080/files/${content.url.split("/").pop()}`} target="_blank" rel="noopener noreferrer">
-                {content.url.split("/").pop()}
-              </a>
+                <a
+                  href={`http://localhost:8080/files/${content.url.split("/").pop()}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {content.url.split("/").pop()}
+                </a>
               </TableCell>
               <TableCell className="flex gap-2 w-1">
                 {renderContentDialog("edit", content)}
@@ -162,3 +166,4 @@ const ContentList = () => {
 };
 
 export default ContentList;
+

@@ -33,6 +33,17 @@ class CertificateService {
     return response.data;
   }
 
+  async sendCertificateByEmail(
+    email: string,
+    certificateId: number,
+  ): Promise<{ status: number; message: string }> {
+    const response = await axios.post<{
+      status: number;
+      message: string;
+    }>(`${this.baseUrl}/send-email/${certificateId}?email=${email}`);
+    return response.data;
+  }
+
   async checkEligibility(
     courseId: number,
   ): Promise<{ eligible: boolean; reason?: string }> {

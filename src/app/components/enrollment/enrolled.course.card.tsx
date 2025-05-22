@@ -32,7 +32,7 @@ export function EnrolledCourseCard({ course }: EnrolledCourseCardProps) {
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "completedo":
+      case "completado":
         return "Completed";
       case "en_progreso":
         return "In Progress";
@@ -87,7 +87,7 @@ export function EnrolledCourseCard({ course }: EnrolledCourseCardProps) {
         </Button>
         {course.status === "completado" && (
           <Button asChild variant="outline" className="flex-1">
-            <Link to={`/student/certificates/course/${course.id}`}>
+            <Link to={`/student/certificates/${course.id}`}>
               Ver Certificado
             </Link>
           </Button>
