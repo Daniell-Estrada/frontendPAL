@@ -24,7 +24,8 @@
     "paths": {
       "root/*": ["./*"],
       "@/*": ["./src/*"],
-      "app/*": ["./src/app/*"]
+      "app/*": ["./src/app/*"],
+      "security/*": ["./src/app/security/*"]
     }
   },
   "include": ["src"]
