@@ -24,7 +24,7 @@ export function CertificateCard({ certificate }: CertificateCardProps) {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `${certificate.courseTitle.replace(/\s+/g, "_")}_Certificate.pdf`;
+      a.download = `${certificate.courseName.replace(/\s+/g, "_")}_Certificate.pdf`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
@@ -41,6 +41,7 @@ export function CertificateCard({ certificate }: CertificateCardProps) {
         certificate.id,
       );
       if (response.status === 200) {
+        alert("Certificate sent successfully to your email!");
       } else {
         alert("Failed to send certificate. Please try again.");
       }
@@ -60,7 +61,7 @@ export function CertificateCard({ certificate }: CertificateCardProps) {
       <CardContent className="space-y-2">
         <div className="text-sm">
           <span className="font-medium">Issued to: </span>
-          {certificate.courseTitle}
+          {certificate.courseName}
         </div>
         <div className="text-sm">
           <span className="font-medium">Issue Date: </span>
